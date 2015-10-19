@@ -27,7 +27,7 @@ router.set('/api', {
         outOfTime = true
         sendError(req, res, responseError(body.newEvent, { message: 'Time out'}))
       }, 3000)
-      ee.on(body.newEvent.from, function (event) {
+      ee.once(body.newEvent.from, function (event) {
         if (!outOfTime) {
           clearTimeout(to)
           sendJson(req, res, event)
